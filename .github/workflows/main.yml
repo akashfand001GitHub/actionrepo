@@ -1,33 +1,69 @@
+# name: ELT Pipeline demo
+
+# on:
+#     push:
+#         branches:
+#         - main
+
+# jobs:
+#     extract-data:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: checkout code 
+#               uses: actions/checkout@v2
+
+#             - name: run extract.py
+#               run: python extract.py
+#     transfrom-data-job:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: checkout code
+#               uses: actions/checkout@v2
+
+#             - name: run transform.py
+#               run: python transform.py
+
+#     load-data-job:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: checkout code 
+#               uses: actions/checkout@v2
+
+#             - name: run load.py 
+#               run: python load.py
+
+
 name: ELT Pipeline demo
 
 on:
-    push:
-        branches:
-        - main
+  push:
+    branches:
+      - main
 
 jobs:
-    extract-data:
-        runs-on: ubuntu-latest
-        steps:
-            - name: checkout code 
-              uses: actions/checkout@v2
+  extract-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
 
-            - name: run extract.py
-              run: python extract.py
-    transfrom-data-job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: checkout code
-              uses: actions/checkout@v2
+      - name: run extract.py
+        run: python extract.py
 
-            - name: run transform.py
-              run: python transfrom.py
+  transform-data-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
 
-    load-data-job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: checkout code 
-              uses: actions/checkout@v2
+      - name: run transform.py
+        run: python transform.py   # ✅ fixed spelling
 
-            - name: run load.py 
-              run: python load.py
+  load-data-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: run load.py
+        run: python load.py
