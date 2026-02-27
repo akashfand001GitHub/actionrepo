@@ -1,0 +1,33 @@
+name: ELT Pipeline demo
+
+on:
+    push:
+        branches:
+        - main
+
+jobs:
+    extract-data:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code 
+              uses: actions/checkout@v2
+
+            - name: run extract.py
+              run: python extract.py
+    transfrom-data-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v2
+
+            - name: run transform.py
+              run: python transfrom.py
+
+    load-data-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code 
+              uses: actions/checkout@v2
+
+            - name: run load.py 
+              run: python load.py
